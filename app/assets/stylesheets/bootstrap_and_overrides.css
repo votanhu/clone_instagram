@@ -1,0 +1,72 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Use Font Awesome icons (default)
+  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+  =require twitter-bootstrap-static/fontawesome
+  */
+
+nav.navbar.navbar-default.navbar-fixed-top{
+  background-color: #fff;
+}
+
+div.editprofile nav.navbar.navbar-default.navbar-fixed-top{
+	background-color: #017fa4;
+	background: -webkit-linear-gradient(bottom, #517fa4 , #306088);
+  background: -moz-linear-gradient(bottom, #517fa4, #306088);
+  background: linear-gradient(to bottom, #517fa4 , #306088);
+  border-bottom: black;
+  min-height: 45px;
+}
+
+div.editprofile ul.navbar-right{
+	border-left: 1px solid #06365f;
+	border-left-color: rgba(0, 0, 0, 0.1);
+	border-right: 1px solid #5786aa;
+	border-right-color: rgba(255, 255, 255, 0.1);
+	float: right;
+}
+
+div.editprofile ul.navbar-right a{
+	padding: 14px;
+}
+
+div.editprofile ul.dropdown-menu{
+	margin-top: 3px;
+}
+
+div.editprofile ul.dropdown-menu li{
+	margin: 2px;
+	border-bottom: 1px solid #eee;
+}
+
+div.editprofile ul.dropdown-menu li:last-child{
+	border-bottom: none;
+}
+
+div.editprofile ul.dropdown-menu li a{
+	margin-bottom: 2px;
+}
+
+div.editprofile li.dropdown:hover, div.editprofile li.dropdown:hover>a{
+	color: white;
+	background-color: #5786aa;
+}
+
+div.editprofile li.dropdown.open:focus, div.editprofile li.dropdown.open:focus>a,
+div.editprofile li.dropdown.open:hover, div.editprofile li.dropdown.open:hover>a,
+div.editprofile li.dropdown.open, div.editprofile li.dropdown.open>a{
+	background-color: #135F91;
+	color: white;
+}
+
+div.editprofile li.dropdown a{
+	color: white;
+	font-weight: bold;
+}
+
+div.editprofile ul.dropdown-menu li a{
+	color: black;
+	padding: 7px;
+	font-weight: 500;
+}

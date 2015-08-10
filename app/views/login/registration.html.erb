@@ -1,0 +1,22 @@
+<div class="login-body clearfix">
+	<div class="login-container registration-container img-rounded">
+		<%= image_tag image_url('instagram_logo.png'), :class => 'center-block login-logo' %>
+
+		<%- model_class = User -%>
+		<%= simple_form_for @login, :url => '/registration' do |l| %>
+
+			<% @login.errors.messages.each do |message| %>
+        <p class="bg-danger img-rounded"><%= "#{message.first} #{message.last.first}" %></p>
+      <% end %>
+
+			<%= l.input :username, label: 'Username:', placeholder: 'Enter your username', label_html: { class: 'small-left-space' } %>
+
+			<%= l.input :password, label: 'Password:', required: true, placeholder: 'Enter your password', label_html: { class: 'small-left-space' } %>
+
+			<%= l.input :email, label: 'Email:', placeholder: 'Enter your email' %>
+
+			<%= l.button :submit, 'Registry', :class => 'btn-success btn-block' %>
+
+		<% end %>
+	</div>
+</div>

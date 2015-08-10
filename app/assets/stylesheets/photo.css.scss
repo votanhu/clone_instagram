@@ -1,0 +1,22 @@
+// Place all the styles related to the Photo controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.feeds-container{
+	width: 50%;
+	padding-top: 20px;
+}
+.feeds-image{
+	list-style-type: none;
+}
+.feeds-image li{
+	margin-bottom: 20px;
+	border: 1px solid #eee;
+}
+.author-info{
+	padding: 10px;
+	color: #004a75
+}
+.author-info span.datetime{
+  float: right;
+	color: #aaa;
+}

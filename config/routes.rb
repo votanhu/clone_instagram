@@ -1,4 +1,37 @@
 Rails.application.routes.draw do
+
+  get 'photo/feeds'
+
+  get 'photo/upload'
+
+  post 'login'  => 'login#login'
+
+  post 'registration' => 'login#registration'
+
+  get 'login' => 'login#signin'
+
+  get 'login/signout'
+
+  get 'login/registration'
+
+  root to: 'login#signin'
+
+  get 'user/profile'
+
+  get 'user/editprofile'
+
+  get 'user/changepassword'
+
+  patch 'updateuser' => 'user#updateuser'
+
+  patch 'updatepassword' => 'user#updatepassword'
+
+  get 'user/follow'
+
+  get 'user/updatefollow'
+
+  get 'photo/feeds'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

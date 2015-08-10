@@ -1,0 +1,20 @@
+<% if is_user_logged? %>
+	<div class="editprofile">
+	  <%= nav_bar fixed: :top, responsive: false do %>
+	  	<a href="/user/follow"><%= image_tag image_url('house_icon.png'), :class => 'nav-home-logo' %></a>
+	    <%= image_tag image_url('instagram_profile_logo.png'), :class => 'nav-middle-logo' %>
+	    <ul class="nav navbar-right nav-pills">
+	      <li class="dropdown">
+	      	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	      		<%= image_tag image_url('sample.jpg'), :class => 'nav-profile-img' %>&nbsp;&nbsp;User Profile</b>
+	      	</a>
+	      	<ul class="dropdown-menu">
+		        <li><a class="img-rounded" href="/user/profile">View Profile</a></li>
+		        <li><a class="img-rounded" href="/user/editprofile">Edit Profile</a></li>
+		        <li><a class="img-rounded" href="login/signout">Sign out</a></li>
+					</ul>
+				</li>
+			</ul>
+	  <% end %>
+	</div>
+<% end %>

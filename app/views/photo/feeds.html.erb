@@ -1,0 +1,16 @@
+<div class="feeds-body nav-margin clearfix">
+	<div class="center-block feeds-container">
+		<ul class="feeds-image">
+			<% @feeds.each do |photo_id, feed| %>
+				<li>
+					<p class="author-info">
+						<%= image_tag image_url('anonymous.jpg'), :class => 'profile-small-image' %>
+						&nbsp;<%= feed['user_name']%>
+						<span class="datetime"><%= feed['created_at']%></span>
+					</p>
+					<%= image_tag image_url(feed['photo_url']), :class => 'img-responsive' %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

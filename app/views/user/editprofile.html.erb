@@ -1,0 +1,43 @@
+<div class="profile-manage nav-margin clearfix">
+  <div class="part-left">
+    <%= render 'shared/left_navigation' %>
+  </div>
+  <div class="part-right">
+    <h1>Edit Profile</h1>
+    <%- model_class = User -%>
+    <%= simple_form_for @user, :url => '/updateuser' do |u| %>
+
+      <% if params[:notice] %>
+        <div class="alert alert-success alert-dismissible img-rounded" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= params[:notice]%>
+        </div>
+      <% end %>
+
+      <% @user.errors.messages.each do |message| %>
+        <p class="bg-danger img-rounded"><%= "#{message.first} #{message.last.first}" %></p>
+      <% end %>
+
+      <%= u.input :name, label: 'Name:', value: @user.name %>
+
+      <%= u.input :email, label: 'Email:', value: @user.email %>
+
+      <%= u.input :username, label: 'Username', value: @user.username %>
+
+      <%= u.input :phone, label: 'Phone number', value: @user.phone %>
+
+      <%= u.input :sex, collection: [['----', 0], ['Male', 1], ['Female', 2]], as: :select, selected: @user.sex %>
+
+      <%= u.input :bio, label: 'Bio', as: :text, value: @user.bio %>
+
+      <%= u.input :website, label: 'Website', value: @user.website %>
+
+      <label class="string optional control-label" for="user_similiar_account_suggestion">Similar Account Suggestions</label>
+
+      <%= u.input :similiar_account_suggestion, label: 'Include your account when recommending similar accounts people might want to follow.', as: :boolean, boolean_style: :inline %>
+
+      <%= u.button :submit, 'Submit', :class => 'btn-success' %>
+
+    <% end %>
+  </div>
+</div>

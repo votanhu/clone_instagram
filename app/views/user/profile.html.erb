@@ -1,0 +1,44 @@
+<div class="profile-body nav-margin clearfix">
+	<div class="center-block profile-container">
+		<div class="profile-top">
+			<div class="part-left">
+				<%= image_tag image_url('anonymous.jpg'), :class => 'profile-image' %>
+			</div>
+			<div class="part-right">
+				<div class="top">
+					<h1 class="username"><%= @user.username%></h1>
+					<a class="btn btn-default editprofile" href="editprofile" role="button">EDIT PROFILE</a>
+				</div>
+				<div class="middle">
+					<h2 class="name"><%= @user.name%></h2>
+				</div>
+				<div class="bottom">
+					<ul class="profile-info">
+						<li><span class="bold-number"><%= @total_post%></span> post</li>
+						<li><span class="bold-number"><%= @total_follower%></span> followers</li>
+						<li><span class="bold-number"><%= @total_following%></span> following</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="profile-bottom">
+			<ul class="posted-image">
+				<li>
+					<%= image_tag image_url('sample.jpg'), :class => 'img-responsive' %>
+				</li>
+				<li>
+					<%= image_tag image_url('sample.jpg'), :class => 'img-responsive' %>
+				</li>
+				<li>
+					<%= image_tag image_url('sample.jpg'), :class => 'img-responsive' %>
+				</li>
+				<li>
+					<%= image_tag image_url('sample.jpg'), :class => 'img-responsive' %>
+				</li>
+				<li>
+					<%= image_tag image_url('sample.jpg'), :class => 'img-responsive' %>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

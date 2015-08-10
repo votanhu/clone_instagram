@@ -1,0 +1,10 @@
+<ul class="nav nav-stacked border-left-right">
+  <li><h2>YOUR ACCOUNT</h2></li>
+  <li class="<%= 'active' if params[:action] == "editprofile" %>">
+  	<a href="/user/editprofile">Edit profile<i class="fa fa-angle-right"></i></a>
+  </li>
+  <li class="<%= 'active' if params[:action] == "changepassword" %>">
+  	<a href="/user/changepassword">Change Password<i class="fa fa-angle-right"></i></a>
+  </li>
+  <li><a href="/login/signout">Sign Out<i class="fa fa-angle-right"></i></a></li>
+</ul>

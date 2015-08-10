@@ -24,10 +24,15 @@ defaults: &defaults
   pool: 5
   timeout: 5000
   encoding: utf8
-  <<: *<%= ENV['RAILS_DB'] || "sqlite" %>
+  <<: *<%= ENV['RAILS_DB'] || "mysql" %>
 
 development:
   <<: *defaults
+  database: instagram
+  username: root
+  password: 123456
+  host:     localhost
+  port:     3306
 
 test: &test
   <<: *defaults

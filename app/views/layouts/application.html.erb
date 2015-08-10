@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rails4Example</title>
+  <title>Instagram</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<div class="container clearfix maincontainer">
+	<% if params[:controller] == "user" && ["editprofile", "changepassword", "updateuser"].include?(params[:action]) %>
+		<%= render 'shared/blue_navigation_bar' %>
+	<% else %>
+		<%= render 'shared/navigation_bar' %>
+	<% end %>
+  <%= yield %>
+</div>
 
 </body>
 </html>

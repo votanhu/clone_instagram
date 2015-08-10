@@ -1,0 +1,23 @@
+<div class="login-body clearfix">
+	<div class="login-container img-rounded">
+		<%= image_tag image_url('instagram_logo.png'), :class => 'center-block login-logo' %>
+
+		<%- model_class = User -%>
+		<%= simple_form_for @login, :url => '/login' do |l| %>
+
+			<%= l.error :invalid_account %>
+
+			<%= error_span(@login.errors.messages[:invalid_account]) %>
+			<br /><br />
+
+			<%= l.input :username, label: 'Username:', placeholder: 'Enter your username', label_html: { class: 'small-left-space' } %>
+
+			<%= l.input :password, label: 'Password:', placeholder: 'Enter your password', label_html: { class: 'small-left-space' } %>
+
+			<%= l.button :submit, 'Sign In', :class => 'btn-success btn-block' %>
+			<br>
+			<%= link_to 'Registration', '/login/registration', :class => 'btn btn-info btn-block' %>
+
+		<% end %>
+	</div>
+</div>

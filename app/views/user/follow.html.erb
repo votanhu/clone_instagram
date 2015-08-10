@@ -1,0 +1,21 @@
+<div class="profile-body nav-margin clearfix">
+	<div class="center-block profile-container">
+		<p class="account-follow-text">SUGGESTED ACCOUNTS TO FOLLOW</p>
+		<div class="profile-list">
+			<ul class="all-suggest-profile">
+				<% @suggest_user.each do |suggest| %>
+				<li class="profile-item">
+					<div class="follow-image">
+						<%= image_tag image_url('anonymous.jpg'), :class => 'profile-small-image' %>
+					</div>
+					<div class="follow-info">
+						<p class="username-info"><%= suggest[1] %></p>
+						<p><%= suggest[2] %></p>
+					</div>
+					<a class="btn btn-default blue" href="/user/updatefollow?follow=<%= suggest[0]%>" role="button">Follow</a>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
