@@ -23,22 +23,13 @@
 		</div>
 		<div class="profile-bottom">
 			<ul class="posted-image">
+				<% @top_photos.each do |photo| %>
 				<li>
-					<%= image_tag image_url('sample.jpg'), :class => 'img-responsive' %>
+					<%= image_tag "/photos/#{photo.url}", :class => 'img-responsive' %>
 				</li>
-				<li>
-					<%= image_tag image_url('sample.jpg'), :class => 'img-responsive' %>
-				</li>
-				<li>
-					<%= image_tag image_url('sample.jpg'), :class => 'img-responsive' %>
-				</li>
-				<li>
-					<%= image_tag image_url('sample.jpg'), :class => 'img-responsive' %>
-				</li>
-				<li>
-					<%= image_tag image_url('sample.jpg'), :class => 'img-responsive' %>
-				</li>
+				<% end %>
 			</ul>
 		</div>
 	</div>
 </div>
+<%= render 'shared/upload_modal' %>

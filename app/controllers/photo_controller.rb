@@ -26,6 +26,32 @@ class PhotoController < ApplicationController
   end
 
   def upload
+    @upload          = Photo.new()
+    @upload.id_user  = session[:logged_user_id]
+    @upload.name     = params['photo'][:info].original_filename
+    ext              = @upload.name.split(".").last
+    random_file_name = "#{[*('a'..'z'),*('A'..'Z')].to_a.shuffle[0,52].join}#{Time.now.to_i}"
+    @upload.url      = File.join(session[:logged_user_id].to_s, "#{random_file_name}.#{ext}")
+    dest_img         = Rails.root.join('public', 'photos', session[:logged_user_id].to_s, "#{random_file_name}.#{ext}")
+
+    respond_to do |format|
+      if @upload.save
+        FileUtils.mkdir_p(File.dirname(dest_img)) unless File.directory?(File.dirname(dest_img))
+        File.rename params['photo'][:info].path, dest_img
+
+        format.html {
+          render :json => @upload.to_json,
+          :content_type => 'text/html',
+          :layout => false
+        }
+      else
+        format.html {
+          render :json => "failed".to_json,
+          :content_type => 'text/html',
+          :layout => false 
+        }
+      end
+    end
   end
 
   private
