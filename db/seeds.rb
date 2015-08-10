@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create({ id: 1, username: 'admin', password: '123456', name: 'votanhu' })
+User.create({ id: 1, username: 'admin', password: 'e10adc3949ba59abbe56e057f20f883e', name: 'votanhu' })
 Photo.create([{ id: 1, id_user: 1, name: 'sample', url: 'sample.jpg' },
 							{ id: 2, id_user: 1, name: 'sample', url: 'sample.jpg' },
 							{ id: 3, id_user: 2, name: 'sample', url: 'sample.jpg' }])

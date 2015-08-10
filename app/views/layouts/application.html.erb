@@ -11,7 +11,7 @@
 <div class="container clearfix maincontainer">
 	<% if params[:controller] == "user" && ["editprofile", "changepassword", "updateuser"].include?(params[:action]) %>
 		<%= render 'shared/blue_navigation_bar' %>
-	<% else %>
+	<% elsif params[:controller] != "login" %>
 		<%= render 'shared/navigation_bar' %>
 	<% end %>
   <%= yield %>

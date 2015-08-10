@@ -5,7 +5,8 @@ class LoginController < ApplicationController
     @login = User.new
     if params['user'].present?
       @login = User.new(user_params)
-      if params['user']['username'].present? && params['user']['password'].present? && @login.save
+      @login.password = Digest::MD5.hexdigest(@login.password)
+      if params['user']['password'].present? && @login.save
         session[:logged_user_id] = @login.id
         redirect_to :controller => :photo, :action => :feeds
       else
@@ -22,10 +23,14 @@ class LoginController < ApplicationController
   end
 
   def login
-    login_user = User.find_by(:username => params['user']['username'], :password => params['user']['password'])
+    login_user = User.find_by(:username => params['user']['username'], :password => Digest::MD5.hexdigest(params['user']['password']))
     if login_user
       session[:logged_user_id] = login_user.id
-      redirect_to :controller => :user, :action => :profile
+      if Follow.where(:id_follower => login_user.id).limit(1).count
+        redirect_to(:controller => :user, :action => :follow)
+      else
+        redirect_to(:controller => :user, :action => :profile)
+      end
     else
       respond_to do |format|
         @login = User.new

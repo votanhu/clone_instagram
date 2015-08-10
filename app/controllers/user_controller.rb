@@ -29,7 +29,7 @@ class UserController < ApplicationController
         @user.errors.add(:old_password_not_match, 'Old password is not correct!') if params['user']['oldpassword'] != @user.password
         @user.errors.add(:old_password_not_match, 'New password is not confirmed!') if params['user']['password'] != params['user']['confirmpassword']
         if@user.errors.blank?
-        	@user.password = params['user']['password']
+        	@user.password = Digest::MD5.hexdigest(params['user']['password'])
         	@user.save
         	format.html { redirect_to :action => 'changepassword', notice: 'Password has been changed successfully.' }
         else

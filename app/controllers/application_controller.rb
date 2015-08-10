@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def check_token
-    unless session[:token] && session[:logged_user_id].present?
+    unless session[:token] || session[:logged_user_id].present?
       session[:original_url] = request.url
       redirect_to(:controller => :login, :action => :signin)
     end
