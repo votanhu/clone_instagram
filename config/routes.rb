@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'comment/add'
+
   get 'photo/feeds'
 
   get 'photo/upload'
@@ -33,6 +35,8 @@ Rails.application.routes.draw do
   get 'photo/feeds'
 
   post 'upload' => 'photo#upload'
+
+  post 'comment/add' => 'comment#add'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -16,6 +16,8 @@
 			<%= l.input :email, label: 'Email:', placeholder: 'Enter your email' %>
 
 			<%= l.button :submit, 'Registry', :class => 'btn-success btn-block' %>
+			<br>
+			<%= link_to 'Already has account', '/login', :class => 'btn btn-info btn-block' %>
 
 		<% end %>
 	</div>

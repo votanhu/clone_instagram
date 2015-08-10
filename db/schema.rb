@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20150809232940) do
 
   create_table "comments", force: true do |t|
     t.integer  "id_photo"
+    t.integer  "id_user"
     t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"

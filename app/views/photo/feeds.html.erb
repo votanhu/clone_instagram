@@ -8,7 +8,20 @@
 						&nbsp;<%= feed['user_name']%>
 						<span class="datetime"><%= feed['created_at']%></span>
 					</p>
-					<%= image_tag image_url(feed['photo_url']), :class => 'img-responsive' %>
+					<%= image_tag "/photos/#{feed['photo_url']}", :class => 'img-responsive' %>
+
+					<br>
+					<ul class="comment-list">
+						<% feed['comments'].each do |id, comment| %>
+							<li>
+								<span class="author-info"><%= comment[:username]%></span>
+								<span class="message"><%= comment[:message]%></span>
+							</li>
+						<% end %>
+					</ul>
+					<br>
+					<input type="text" name="comment" class="form-control comment" placeholder="Add a comment" id-photo="<%= photo_id%>">
+					<br>
 				</li>
 			<% end %>
 		</ul>

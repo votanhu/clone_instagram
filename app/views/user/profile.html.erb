@@ -22,6 +22,7 @@
 			</div>
 		</div>
 		<div class="profile-bottom">
+			<%= render 'shared/upload_modal' %>
 			<ul class="posted-image">
 				<% @top_photos.each do |photo| %>
 				<li>
@@ -32,4 +33,3 @@
 		</div>
 	</div>
 </div>
-<%= render 'shared/upload_modal' %>

@@ -13,5 +13,32 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require jquery-fileupload
 //= require turbolinks
 //= require_tree .
+
+var fileUploadErrors = {
+  maxFileSize: 'File is too big',
+  minFileSize: 'File is too small',
+  acceptFileTypes: 'Filetype not allowed',
+  maxNumberOfFiles: 'Max number of files exceeded',
+  uploadedBytes: 'Uploaded bytes exceed file size',
+  emptyResult: 'Empty file upload result'
+};
+
+$(function(){
+	$('.comment').keypress(function(e){
+		var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode == '13') {
+      $.ajax({
+						  method: "POST",
+						  url: "/comment/add",
+						  data: { id_photo: $(this).attr("id-photo"), message: $(this).val() },
+						  asyn: false,
+						  success:function(msg){
+						  	location.reload();
+						  }
+						});
+    }
+	});
+});
