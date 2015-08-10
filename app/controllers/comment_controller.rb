@@ -16,6 +16,6 @@ class CommentController < ApplicationController
   		photo_hashtag.save
   	end
 
-  	render html: "<span class='author-info'>#{User.find(session[:logged_user_id]).username}</span><span class='message'>#{params['message']}</span>".html_safe
+  	render html: "<li><span class='author-info'>#{User.find(session[:logged_user_id]).username}</span><span class='message'>#{params['message']}</span></li>".html_safe
   end
 end
