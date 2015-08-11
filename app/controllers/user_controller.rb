@@ -17,7 +17,8 @@ class UserController < ApplicationController
                                                    COUNT(comments.id) AS total_comment
                                               FROM photos
                                          LEFT JOIN comments ON comments.id_photo = photos.id
-                                             WHERE photos.id_user = #{session[:logged_user_id]}")
+                                             WHERE photos.id_user = #{session[:logged_user_id]}
+                                          GROUP BY photos.id")
     @total_follower   = Follow.where(:id_user => session[:logged_user_id]).count
     @total_following  = Follow.where(:id_follower => session[:logged_user_id]).count
   end

@@ -1,5 +1,33 @@
 class PhotoController < ApplicationController
+  include Magick
+
   before_action :set_user, only: [:feeds, :upload]
+
+  def get
+    connection   = ActiveRecord::Base.connection
+    photo_feed   = connection.execute("SELECT photos.id, photos.url, photos.created_at,
+                                                users.username
+                                           FROM users
+                                           JOIN photos ON photos.id_user = users.id
+                                          WHERE photos.id = #{params['id_photo']}")
+    @feed = {}
+    photo_feed.each do |row|
+      @feed[row[0]]                      ||= {}
+      @feed[row[0]]['photo_url']         ||= row[1]
+      @feed[row[0]]['created_at']        ||= row[2].strftime("%d/%m/%Y")
+      @feed[row[0]]['user_name']         ||= row[3]
+      @feed[row[0]]['comments']          ||= {}
+
+      comments = connection.execute("SELECT comments.id, comments.message, comment_user.username AS commentor
+                                      FROM comments
+                                      JOIN users AS comment_user ON comments.id_user = comment_user.id
+                                     WHERE comments.id_photo = #{row[0]}
+                                  ORDER BY comments.id DESC")
+      comments.each do |comment|
+        @feed[row[0]]['comments'][comment[0]]  ||= {:username => comment[2], :message => comment[1]}
+      end
+    end
+  end
 
   def feeds
     connection   = ActiveRecord::Base.connection
@@ -52,6 +80,7 @@ class PhotoController < ApplicationController
     random_file_name = "#{[*('a'..'z'),*('A'..'Z')].to_a.shuffle[0,52].join}#{Time.now.to_i}"
     @upload.url      = File.join(session[:logged_user_id].to_s, "#{random_file_name}.#{ext}")
     dest_img         = Rails.root.join('public', 'photos', session[:logged_user_id].to_s, "#{random_file_name}.#{ext}")
+    thumb_img        = Rails.root.join('public', 'photos', 'thumbnail', session[:logged_user_id].to_s, "#{random_file_name}.#{ext}")
 
     res_hash         = {
                           :name => params['photo'][:info].original_filename,
@@ -64,6 +93,10 @@ class PhotoController < ApplicationController
       if @upload.save
         FileUtils.mkdir_p(File.dirname(dest_img)) unless File.directory?(File.dirname(dest_img))
         File.rename params['photo'][:info].path, dest_img
+
+        # Crop image to create thumbnail
+        FileUtils.mkdir_p(File.dirname(thumb_img)) unless File.directory?(File.dirname(thumb_img))
+        Image.read(dest_img).first.crop(0, 0, 300, 300).write(thumb_img)
 
         format.json { render json: { files: [res_hash] }, status: :created, location: @upload.url }
       else

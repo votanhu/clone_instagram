@@ -26,18 +26,54 @@
       <ul class="posted-image">
         <% @all_photos.each do |photo| %>
         <li>
-          <div class="image-container">
-            <div class="image-info">
-                <span class="center-info">
-                  <i class="fa fa-comment-o"></i>
-                  <%= photo[2]%>
-                </span>
+          <a class="cursor" onclick="showphoto(<%= photo[0]%>)">
+            <div class="image-container">
+              <div class="image-info">
+                  <span class="center-info">
+                    <i class="fa fa-comment-o"></i>
+                    <%= photo[2]%>
+                  </span>
+              </div>
+              <%= image_tag "/photos/thumbnail/#{photo[1]}", :class => 'img-responsive' %>
             </div>
-            <%= image_tag "/photos/#{photo[1]}", :class => 'img-responsive', :id => photo[0] %>
-          </div>
+          </a>
         </li>
         <% end %>
       </ul>
     </div>
   </div>
 </div>
+
+<div id="photo-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Photo Info</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<script>
+  function showphoto(photo_id){
+    $('#photo-modal').modal('show');
+    $.ajax({
+              method: "GET",
+              url: "/photo/get",
+              data: { id_photo: photo_id },
+              asyn: false,
+              success:function(msg){
+                $('.modal-body').html(msg);
+              }
+          });
+  }
+</script>

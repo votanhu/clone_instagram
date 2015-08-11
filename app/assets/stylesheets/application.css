@@ -98,3 +98,7 @@ a:hover{
   left: 10px;
   display: none;
 }
+.cursor{
+  cursor: pointer;
+  cursor: hand;
+}
