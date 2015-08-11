@@ -42,4 +42,11 @@ $(function(){
 						});
     }
 	});
+
+	$('#keyword').keypress(function(e){
+		var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode == '13') {
+    	location.href = "/photo/feeds?keyword=" + $(this).val().replace("#", " ");;
+    }
+	});
 });

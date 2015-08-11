@@ -7,7 +7,7 @@ class CommentController < ApplicationController
   	comment.save
   	comment.message.scan(/\#[[:alnum:]]+/).each do |tag|
   		hashtag = Hashtag.new
-  		hashtag.tag = tag
+  		hashtag.tag = tag[1..-1]
   		hashtag.save
 
   		photo_hashtag = PhotoHashtag.new

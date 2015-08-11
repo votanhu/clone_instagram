@@ -1,7 +1,7 @@
 <% if is_user_logged? %>
   <%= nav_bar fixed: :top, responsive: false do %>
   	<a href="/photo/feeds"><%= image_tag image_url('instagram_logo.png'), :class => 'nav-logo' %></a>
-    <input type="search" class="nav-input-search" placeholder="Search">
+    <input type="search" class="nav-input-search" placeholder="Search" id="keyword" name="keyword" value="<%= params['keyword']%>">
     <% if params[:action] == 'profile' %>
   		<a class="instagram-text-color nav-middle-align pull-right" href="/login/signout">Sign out</a>
   	<% else %>

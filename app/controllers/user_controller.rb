@@ -45,7 +45,7 @@ class UserController < ApplicationController
     @suggest_user = connection.execute("SELECT users.id, users.username, users.name
                                           FROM users
                                      LEFT JOIN follows ON follows.id_user = users.id AND follows.id_follower = #{session[:logged_user_id]}
-                                         WHERE follows.id_user IS NULL AND similiar_account_suggestion = 1
+                                         WHERE follows.id_user IS NULL AND similiar_account_suggestion = 1 AND users.id <> #{session[:logged_user_id]}
                                          LIMIT 10")
   end
 
