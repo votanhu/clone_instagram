@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20150809232940) do
     t.integer  "id_photo"
     t.integer  "id_user"
     t.string   "message"
+    t.integer  "is_notified", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,21 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Instagram</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<div class="clearfix maincontainer">
-	<% if params[:controller] == "user" && ["editprofile", "changepassword", "updateuser"].include?(params[:action]) %>
-		<%= render 'shared/blue_navigation_bar' %>
-	<% elsif params[:controller] != "login" %>
-		<%= render 'shared/navigation_bar' %>
-	<% end %>
+<% if params[:controller] != "comment" %>
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Instagram</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="clearfix maincontainer">
+      <% if params[:controller] == "user" && ["editprofile", "changepassword", "updateuser"].include?(params[:action]) %>
+        <%= render 'shared/blue_navigation_bar' %>
+      <% elsif params[:controller] != "login" %>
+        <%= render 'shared/navigation_bar' %>
+      <% end %>
+      <%= yield %>
+      <div class="alert alert-info" role="alert" id="notification"></div>
+    </div>
+  </body>
+  </html>
+<% else %>
   <%= yield %>
-</div>
-
-</body>
-</html>
+<% end %>

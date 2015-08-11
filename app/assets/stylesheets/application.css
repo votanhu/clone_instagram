@@ -16,26 +16,26 @@
  */
  
 .container{
-	padding-left: 3%;
-	padding-right: 8%;
+  padding-left: 3%;
+  padding-right: 8%;
 }
 .maincontainer{
-	height:100vh;
-	width:100vw;
-	margin: 0px;
-	padding: 0px;
+  height:100vh;
+  width:100vw;
+  margin: 0px;
+  padding: 0px;
 }
 
 input.nav-input-search{
- 	width: 200px;
- 	height: 27px;
- 	background: #fbfbfb url('/assets/search-icon.png') no-repeat 60px center;
- 	position: absolute;
- 	left: 48%;
- 	margin-left: -75px;
- 	top: 25px;
- 	text-align: center;
- 	-webkit-border-radius: 15px;
+  width: 200px;
+  height: 27px;
+  background: #fbfbfb url('/assets/search-icon.png') no-repeat 60px center;
+  position: absolute;
+  left: 48%;
+  margin-left: -75px;
+  top: 25px;
+  text-align: center;
+  -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   border-radius: 15px;
   border: 1px solid #ccc;
@@ -43,51 +43,58 @@ input.nav-input-search{
 }
 
 input.nav-input-search:focus{
-	background: #fff url('/assets/search-icon.png') no-repeat 9px center;
-	text-align: left;
-	padding-left: 20px;
+  background: #fff url('/assets/search-icon.png') no-repeat 9px center;
+  text-align: left;
+  padding-left: 20px;
 }
 
 a:hover{
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .nav-logo{
-	position: relative;
-	left: 3%;
-	width: 150px;
-	padding: 20px;
+  position: relative;
+  left: 3%;
+  width: 150px;
+  padding: 20px;
 }
 
 .nav-middle-logo{
-	position: absolute;
-	left: 46%;
-	top: 10px;
+  position: absolute;
+  left: 46%;
+  top: 10px;
 }
 
 .nav-profile-img{
-	height: 20px;
-	width: 20px;
-	float: left;
+  height: 20px;
+  width: 20px;
+  float: left;
 }
 
 .nav-home-logo{
-	padding: 5px;
-	border-left: 1px solid #5786aa;
-	border-left-color: rgba(255, 255, 255, 0.1);
-	border-right: 1px solid #5786aa;
-	border-right-color: rgba(255, 255, 255, 0.1);
+  padding: 5px;
+  border-left: 1px solid #5786aa;
+  border-left-color: rgba(255, 255, 255, 0.1);
+  border-right: 1px solid #5786aa;
+  border-right-color: rgba(255, 255, 255, 0.1);
 }
 
 .instagram-text-color{
-	color: #004a75 !important;
-	font-weight: 500;
+  color: #004a75 !important;
+  font-weight: 500;
 }
 
 .nav-margin{
-	margin-top: 75px;
+  margin-top: 75px;
 }
 
 .nav-middle-align{
-	margin-top: 25px;
+  margin-top: 25px;
+}
+
+#notification{
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+  display: none;
 }

@@ -9,3 +9,21 @@
     <% end %>
   <% end %>
 <% end %>
+<script>
+setInterval(function(){
+    $.ajax({
+              method: "POST",
+              url: "/comment/notification",
+              asyn: false,
+              success:function(msg){
+                if(msg.length > 10){
+                  $('#notification').fadeIn();
+                  $('#notification').html(msg);
+                  setTimeout(function(){
+                    $('#notification').fadeOut();
+                  }, 4000);
+                }
+              }
+            });
+  }, 7000);
+</script>

@@ -27,26 +27,26 @@ var fileUploadErrors = {
 };
 
 $(function(){
-	$('.comment').keypress(function(e){
-		var keycode = (e.keyCode ? e.keyCode : e.which);
+  $('.comment').keypress(function(e){
+    var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
-    	$this = $(this)
+      $this = $(this)
       $.ajax({
-						  method: "POST",
-						  url: "/comment/add",
-						  data: { id_photo: $(this).attr("id-photo"), message: $(this).val() },
-						  asyn: false,
-						  success:function(msg){
-						  	$this.parent().find('.comment-list').prepend(msg);
-						  }
-						});
+              method: "POST",
+              url: "/comment/add",
+              data: { id_photo: $(this).attr("id-photo"), message: $(this).val() },
+              asyn: false,
+              success:function(msg){
+                $this.parent().find('.comment-list').prepend(msg);
+              }
+            });
     }
-	});
+  });
 
-	$('#keyword').keypress(function(e){
-		var keycode = (e.keyCode ? e.keyCode : e.which);
+  $('#keyword').keypress(function(e){
+    var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
-    	location.href = "/photo/feeds?keyword=" + $(this).val().replace("#", " ");;
+      location.href = "/photo/feeds?keyword=" + $(this).val().replace("#", " ");;
     }
-	});
+  });
 });

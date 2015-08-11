@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 
   post 'comment/add' => 'comment#add'
 
+  post 'comment/notification' => 'comment#notification'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
