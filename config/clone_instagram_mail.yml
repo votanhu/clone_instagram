@@ -1,0 +1,11 @@
+development:
+  username: 'votanhu@gmail.com'
+  password: '47198705'
+
+test:
+  username: 'votanhu@gmail.com'
+  password: '47198705'
+
+production:
+  username: 'votanhu@gmail.com'
+  password: '47198705'

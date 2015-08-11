@@ -50,7 +50,10 @@ class UserController < ApplicationController
   end
 
   def updatefollow
-    Follow.find_or_create_by(id_user: params['follow'], id_follower: session[:logged_user_id])
+    follow             = Follow.new
+    follow.id_user     = params['follow']
+    follow.id_follower = session[:logged_user_id]
+    MemberMailer.notify_has_new_follower(follow.id_user, follow.id_follower) if follow.save
     redirect_to :controller => :user, :action => :follow
   end
 
