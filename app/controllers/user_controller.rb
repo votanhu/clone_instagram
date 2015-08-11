@@ -13,7 +13,11 @@ class UserController < ApplicationController
     @user.username    = user_info.first.second
     @user.name        = user_info.first.third
     @total_post       = user_info.first.last
-    @top_photos       = Photo.where(:id_user => session[:logged_user_id]).limit(10)
+    @all_photos       = connection.execute("SELECT photos.id, photos.url,
+                                                   COUNT(comments.id) AS total_comment
+                                              FROM photos
+                                         LEFT JOIN comments ON comments.id_photo = photos.id
+                                             WHERE photos.id_user = #{session[:logged_user_id]}")
     @total_follower   = Follow.where(:id_user => session[:logged_user_id]).count
     @total_following  = Follow.where(:id_follower => session[:logged_user_id]).count
   end

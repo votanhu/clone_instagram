@@ -75,3 +75,6 @@ gem 'simple_form'
 # Upload gems
 gem 'jquery-fileupload-rails'
 gem 'paperclip'
+
+# Image gems
+gem 'rmagick'
