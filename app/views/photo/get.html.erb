@@ -1,27 +1,19 @@
-<div class="center-block feeds-container">
-	<ul class="feeds-image">
-		<% @feed.each do |photo_id, feed| %>
-			<li>
-				<p class="author-info">
-					<%= image_tag image_url('anonymous.jpg'), :class => 'profile-small-image' %>
-					&nbsp;<%= feed['user_name']%>
-					<span class="datetime"><%= feed['created_at']%></span>
-				</p>
-				<%= image_tag "/photos/#{feed['photo_url']}", :class => 'img-responsive' %>
-
-				<br>
-				<ul class="comment-list">
-					<% feed['comments'].each do |id, comment| %>
-						<li>
-							<span class="author-info"><%= comment[:username]%></span>
-							<span class="message"><%= comment[:message]%></span>
-						</li>
-					<% end %>
-				</ul>
-				<br>
-				<input type="text" name="comment" class="form-control comment" placeholder="Add a comment" id-photo="<%= photo_id%>">
-				<br>
-			</li>
-		<% end %>
-	</ul>
+<div class="center-block">
+  <% @feed.each do |photo_id, feed| %>
+    <div class="modal-img-container">
+      <%= image_tag "/photos/#{feed['photo_url']}", :class => 'img-responsive modal-img' %>
+    </div>
+    <div class="modal-comment-container">
+      <ul class="modal-comment-list">
+        <% feed['comments'].each do |id, comment| %>
+          <li>
+            <span class="author-info"><%= comment[:username]%></span>
+            <span class="message"><%= comment[:message]%></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <br>
+    <input type="text" name="comment" class="form-control modal-comment" placeholder="Add a comment" id-photo="<%= photo_id%>">
+  <% end %>
 </div>

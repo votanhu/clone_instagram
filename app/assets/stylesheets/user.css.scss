@@ -88,7 +88,7 @@
   max-width: 30%;
 }
 .posted-image img{
-  max-height: 300px;
+  max-height: 250px;
 }
 .profile-manage{
   height: 100vh;
@@ -274,4 +274,17 @@ li.profile-item:first-child{
   text-align: center;
   font-size: 20px;
   font-weight: bold;
+}
+.modal-img-container, .modal-comment-container{
+  float: left;
+  width: 50%;
+}
+.modal-img-container img{
+  max-width: 100%;
+}
+.modal-comment-list{
+  list-style-type: none;
+}
+#photo-modal .modal-dialog{
+  min-width: 80%;
 }

@@ -8,22 +8,51 @@
     	<a class="instagram-text-color nav-middle-align pull-right" href="/user/profile"><%= @user.username%></a>
     <% end %>
   <% end %>
-<% end %>
+
+
+<div id="photo-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Photo Info</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script>
 setInterval(function(){
+  $.ajax({
+            method: "POST",
+            url: "/comment/notification",
+            asyn: false,
+            success:function(msg){
+              if(msg.length > 10){
+                $('#notification').fadeIn();
+                $('#notification').html(msg);
+                setTimeout(function(){
+                  $('#notification').fadeOut();
+                }, 4000);
+              }
+            }
+          });
+  }, 7000);
+
+  function showphoto(photo_id){
+    $('#photo-modal').modal('show');
     $.ajax({
-              method: "POST",
-              url: "/comment/notification",
+              method: "GET",
+              url: "/photo/get",
+              data: { id_photo: photo_id },
               asyn: false,
               success:function(msg){
-                if(msg.length > 10){
-                  $('#notification').fadeIn();
-                  $('#notification').html(msg);
-                  setTimeout(function(){
-                    $('#notification').fadeOut();
-                  }, 4000);
-                }
+                $('.modal-body').html(msg);
               }
-            });
-  }, 7000);
+          });
+  }
 </script>
+
+<% end %>

@@ -80,7 +80,7 @@ class PhotoController < ApplicationController
     random_file_name = "#{[*('a'..'z'),*('A'..'Z')].to_a.shuffle[0,52].join}#{Time.now.to_i}"
     @upload.url      = File.join(session[:logged_user_id].to_s, "#{random_file_name}.#{ext}")
     dest_img         = Rails.root.join('public', 'photos', session[:logged_user_id].to_s, "#{random_file_name}.#{ext}")
-    thumb_img        = Rails.root.join('public', 'photos', 'thumbnail', session[:logged_user_id].to_s, "#{random_file_name}.#{ext}")
+    dest_thumb_img   = Rails.root.join('public', 'photos', 'thumbnail', session[:logged_user_id].to_s, "#{random_file_name}.#{ext}")
 
     res_hash         = {
                           :name => params['photo'][:info].original_filename,
@@ -94,9 +94,7 @@ class PhotoController < ApplicationController
         FileUtils.mkdir_p(File.dirname(dest_img)) unless File.directory?(File.dirname(dest_img))
         File.rename params['photo'][:info].path, dest_img
 
-        # Crop image to create thumbnail
-        FileUtils.mkdir_p(File.dirname(thumb_img)) unless File.directory?(File.dirname(thumb_img))
-        Image.read(dest_img).first.crop(0, 0, 300, 300).write(thumb_img)
+        create_thumbnail dest_img, dest_thumb_img
 
         format.json { render json: { files: [res_hash] }, status: :created, location: @upload.url }
       else
@@ -110,5 +108,11 @@ class PhotoController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(session[:logged_user_id])
+    end
+
+    def create_thumbnail(dest_img, dest_thumb_img)
+      # Crop image to create thumbnail
+      FileUtils.mkdir_p(File.dirname(dest_thumb_img)) unless File.directory?(File.dirname(dest_thumb_img))
+      Image.read(dest_img).first.resize_to_fill(250, 250, CenterGravity).write(dest_thumb_img)
     end
 end

@@ -27,7 +27,7 @@ var fileUploadErrors = {
 };
 
 $(function(){
-  $('.comment').keypress(function(e){
+  $(document).on('keypress', '.comment', function(e){
     var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
       $this = $(this)
